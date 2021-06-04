@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.jeanbarrossilva.stoa.ui.view.SessionLayout
+        android:id="@+id/popular_session_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/SessionLayout_popular_title"
+        app:description="@string/SessionLayout_popular_description"
+        app:spacing="90dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/popular_session_content_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/view_book"
+            tools:ignore="RtlSymmetry" />
+
+    </com.jeanbarrossilva.stoa.ui.view.SessionLayout>
+
+</LinearLayout>

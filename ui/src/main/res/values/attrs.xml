@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr
+        name="actionButtonTitle"
+        format="string" />
+
+    <attr
+        name="description"
+        format="string" />
+
+    <attr
+        name="spacing"
+        format="dimension" />
+
+    <attr
+        name="title"
+        format="string" />
+</resources>

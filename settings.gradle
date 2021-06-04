@@ -1,0 +1,9 @@
+rootProject.name = 'Stoa'
+
+include ':app'
+include ':ui'
+include ':extensions'
+include ':model'
+include ':presenter'
+include ':presenter-core'
+include ':model-test'

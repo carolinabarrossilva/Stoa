@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="140dp"
+    android:layout_height="wrap_content"
+    app:cardElevation="0dp"
+    app:cardCornerRadius="10dp"
+    tools:layout_gravity="center">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:selectableItemBackground">
+
+        <com.jeanbarrossilva.stoa.ui.view.ColumnLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            app:spacing="20dp">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/cover_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="2dp"
+                android:adjustViewBounds="true"
+                app:riv_corner_radius="10dp"
+                tools:src="@drawable/img_view_book_placeholder_cover" />
+
+            <com.jeanbarrossilva.stoa.ui.view.ColumnLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:spacing="2dp">
+
+                <TextView
+                    android:id="@+id/title_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/android_euclid"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textColor="?android:textColorPrimary"
+                    tools:text="@string/view_book_placeholder_title" />
+
+                <TextView
+                    android:id="@+id/author_name_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    tools:text="@string/view_book_placeholder_author_name" />
+
+            </com.jeanbarrossilva.stoa.ui.view.ColumnLayout>
+
+        </com.jeanbarrossilva.stoa.ui.view.ColumnLayout>
+
+    </FrameLayout>
+
+</androidx.cardview.widget.CardView>

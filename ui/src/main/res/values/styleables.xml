@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ColumnLayout">
+        <attr name="spacing" />
+    </declare-styleable>
+
+    <declare-styleable name="SessionLayout">
+        <attr name="title" />
+        <attr name="description" />
+        <attr name="actionButtonTitle" />
+        <attr name="spacing" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,43 @@
+buildscript {
+    ext {
+        build_tools_version = '30.0.3'
+        compile_sdk_version = 30
+        java_version = JavaVersion.VERSION_1_8
+        jvm_target = java_version.toString()
+        min_sdk_version = 24
+        minify_enabled = true
+        target_sdk_version = 30
+        version_code = 1
+        version_name = '1.0'
+
+        kotlin_version = '1.5.10'
+        navigation_version = '2.3.5'
+        rxandroid_version = '3.0.0'
+        rxkotlin_version = '3.0.1'
+    }
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_version"
+        classpath 'com.android.tools.build:gradle:4.2.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        maven {
+            url 'https://jitpack.io'
+        }
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

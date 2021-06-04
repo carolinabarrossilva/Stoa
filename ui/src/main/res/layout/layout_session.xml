@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/headline_layout_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:padding="25dp">
+
+        <com.jeanbarrossilva.stoa.ui.view.ColumnLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.7"
+            app:spacing="2dp">
+
+            <TextView
+                android:id="@+id/title_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/android_euclid"
+                android:textSize="20sp"
+                android:textColor="?android:textColorPrimary"
+                tools:text="@string/SessionLayout_popular_title" />
+
+            <TextView
+                android:id="@+id/description_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@string/SessionLayout_popular_description" />
+
+        </com.jeanbarrossilva.stoa.ui.view.ColumnLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/action_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:padding="0dp"
+            android:gravity="end|center_vertical"
+            android:text="@string/SessionLayout_actionButtonTitle"
+            android:textAllCaps="false"
+            android:textAlignment="gravity"
+            android:letterSpacing="0"
+            android:textColor="?android:colorPrimary"
+            android:background="@android:color/transparent"
+            app:cornerRadius="50dp"
+            app:icon="@drawable/ic_round_arrow_forward_ios_24"
+            app:iconSize="12dp"
+            app:iconGravity="end"
+            app:iconTint="?android:colorPrimary" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

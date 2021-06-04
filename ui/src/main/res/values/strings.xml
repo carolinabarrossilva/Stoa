@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="SessionLayout_actionButtonTitle">See all</string>
+
+    <string name="SessionLayout_popular_title">Popular</string>
+    <string name="SessionLayout_popular_description">Most seen content by other people.</string>
+
+    <string name="view_book_placeholder_title">Vá para onde a ação acontece!</string>
+    <string name="view_book_placeholder_subtitle">Os 5 princípios de uma liderança centrada no exemplo</string>
+    <string name="view_book_placeholder_author_name">André Silva</string>
+    <string name="view_book_content_description_cover">%s\'s %s cover</string>
+</resources>
