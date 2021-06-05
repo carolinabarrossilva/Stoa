@@ -3,6 +3,7 @@ package com.jeanbarrossilva.stoa.extensions.context
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Color
+import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.TypedValue
@@ -34,6 +35,12 @@ infix fun Context.colorOf(@AttrRes attrRes: Int): Int {
 infix fun Context.drawableOf(@AttrRes attrRes: Int): Drawable? {
     return obtainStyledAttributes(intArrayOf(attrRes)).use {
         it.getDrawable(0)
+    }
+}
+
+infix fun Context.typefaceOf(@AttrRes attrRes: Int): Typeface? {
+    return obtainStyledAttributes(intArrayOf(attrRes)).use {
+        it.getFont(0)
     }
 }
 
