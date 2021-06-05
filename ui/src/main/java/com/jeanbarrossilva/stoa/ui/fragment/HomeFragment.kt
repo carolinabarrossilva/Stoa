@@ -13,7 +13,7 @@ import com.jeanbarrossilva.stoa.model.Book
 import com.jeanbarrossilva.stoa.model.repository.AuthorRepository
 import com.jeanbarrossilva.stoa.presenter.HomePresenter
 import com.jeanbarrossilva.stoa.presenter.view.HomeView
-import com.jeanbarrossilva.stoa.ui.view.compose.layout.HomeUI
+import com.jeanbarrossilva.stoa.ui.compose.HomeUI
 
 class HomeFragment: Fragment(), HomeView {
     private var books by mutableStateOf(emptyList<Book>())

@@ -1,4 +1,4 @@
-package com.jeanbarrossilva.stoa.ui.view.compose.theme
+package com.jeanbarrossilva.stoa.ui.compose.theme
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface

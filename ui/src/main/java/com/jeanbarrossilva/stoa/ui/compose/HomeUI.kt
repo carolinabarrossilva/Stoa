@@ -1,4 +1,4 @@
-package com.jeanbarrossilva.stoa.ui.view.compose.layout
+package com.jeanbarrossilva.stoa.ui.compose
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,8 +15,8 @@ import com.jeanbarrossilva.stoa.model.Author
 import com.jeanbarrossilva.stoa.model.Book
 import com.jeanbarrossilva.stoa.ui.R
 import com.jeanbarrossilva.stoa.ui.adapter.BookAdapter
-import com.jeanbarrossilva.stoa.ui.view.compose.component.Section
-import com.jeanbarrossilva.stoa.ui.view.compose.theme.StoaTheme
+import com.jeanbarrossilva.stoa.ui.compose.component.Section
+import com.jeanbarrossilva.stoa.ui.compose.theme.StoaTheme
 
 @Composable
 fun HomeUI(books: List<Book>, modifier: Modifier = Modifier) {
