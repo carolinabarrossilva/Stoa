@@ -1,12 +1,9 @@
-package com.jeanbarrossilva.stoa.ui.view.compose
+package com.jeanbarrossilva.stoa.ui.view.compose.component
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ContentAlpha
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ArrowForwardIos
 import androidx.compose.runtime.Composable
@@ -14,7 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.toFontFamily
@@ -23,7 +20,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.viewinterop.AndroidView
 import com.jeanbarrossilva.stoa.ui.R
 
 @Composable
@@ -34,18 +30,19 @@ fun Session(
     actionButtonTitle: String = stringResource(R.string.SessionLayout_actionButtonTitle),
     onActionButtonClick: () -> Unit,
     spacing: Dp = 25.dp,
+    padding: Dp = spacing,
     content: @Composable () -> Unit
 ) {
     Column(
         modifier
             .fillMaxWidth(),
-        Arrangement.spacedBy(0.dp, Alignment.CenterVertically)
+        Arrangement.spacedBy(spacing)
     ) {
         Row(
             Modifier
                 .fillMaxWidth()
-                .padding(25.dp)
-                .padding(bottom = spacing),
+                .padding(horizontal = 25.dp)
+                .padding(top = 25.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(
@@ -71,39 +68,48 @@ fun Session(
                     .fillMaxWidth(),
                 Alignment.CenterEnd
             ) {
-                AndroidView({ context ->
-                    ComposeView(context)
-                }) { view ->
-                    view.setContent {
-                        Row(
-                            Modifier
-                                .clip(RoundedCornerShape(50.dp))
-                                .clickable(onClick = onActionButtonClick)
-                                .padding(2.dp),
-                            Arrangement.spacedBy(5.dp),
-                            Alignment.CenterVertically
-                        ) {
-                            Text(
-                                actionButtonTitle,
-                                color = MaterialTheme.colors.primary,
-                                fontFamily = Font(R.font.android_euclid_medium).toFontFamily(),
-                                textAlign = TextAlign.End
-                            )
+                Button(
+                    onClick = onActionButtonClick,
+                    Modifier
+                        .clip(RoundedCornerShape(50.dp))
+                        .clickable(onClick = onActionButtonClick),
+                    elevation = ButtonDefaults.elevation(defaultElevation = 0.dp, pressedElevation = 0.dp, disabledElevation = 0.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = Color.Transparent,
+                        contentColor = MaterialTheme.colors.primary
+                    ),
+                    contentPadding = PaddingValues(5.dp)
+                ) {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(5.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            actionButtonTitle,
+                            color = MaterialTheme.colors.primary,
+                            fontFamily = Font(R.font.android_euclid_medium).toFontFamily(),
+                            letterSpacing = 0.sp,
+                            textAlign = TextAlign.End
+                        )
 
-                            Icon(
-                                Icons.Rounded.ArrowForwardIos,
-                                contentDescription = null,
-                                Modifier
-                                    .size(12.dp),
-                                tint = MaterialTheme.colors.primary
-                            )
-                        }
+                        Icon(
+                            Icons.Rounded.ArrowForwardIos,
+                            contentDescription = null,
+                            Modifier
+                                .size(12.dp),
+                            tint = MaterialTheme.colors.primary
+                        )
                     }
                 }
             }
         }
 
-        content()
+        Surface(
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = padding),
+            content = content
+        )
     }
 }
 
