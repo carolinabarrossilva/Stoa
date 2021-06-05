@@ -1,5 +1,6 @@
 package com.jeanbarrossilva.stoa.ui.view.compose.layout
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Surface
@@ -15,28 +16,31 @@ import com.jeanbarrossilva.stoa.model.Book
 import com.jeanbarrossilva.stoa.ui.R
 import com.jeanbarrossilva.stoa.ui.adapter.BookAdapter
 import com.jeanbarrossilva.stoa.ui.view.compose.component.Section
+import com.jeanbarrossilva.stoa.ui.view.compose.theme.StoaTheme
 
 @Composable
 fun HomeUI(books: List<Book>, modifier: Modifier = Modifier) {
-    Surface(
-        modifier
-            .fillMaxSize()
-    ) {
-        Section(
-            title = stringResource(R.string.SessionLayout_popular_title),
-            description = stringResource(R.string.SessionLayout_popular_description),
-            onActionButtonClick = {
-            }
+    StoaTheme {
+        Surface(
+            modifier
+                .fillMaxSize()
         ) {
-            AndroidView(
-                { context ->
-                    RecyclerView(context)
-                },
-                Modifier
-                    .fillMaxWidth()
-            ) { view ->
-                view.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
-                view.adapter = BookAdapter(books) {
+            Section(
+                title = stringResource(R.string.SessionLayout_popular_title),
+                description = stringResource(R.string.SessionLayout_popular_description),
+                onActionButtonClick = {
+                }
+            ) {
+                AndroidView(
+                    { context ->
+                        RecyclerView(context)
+                    },
+                    Modifier
+                        .fillMaxWidth()
+                ) { view ->
+                    view.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
+                    view.adapter = BookAdapter(books) {
+                    }
                 }
             }
         }
@@ -44,7 +48,7 @@ fun HomeUI(books: List<Book>, modifier: Modifier = Modifier) {
 }
 
 @Composable
-@Preview
+@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 private fun HomeUI_Preview() {
     HomeUI(books = Author.sample.books)
 }
