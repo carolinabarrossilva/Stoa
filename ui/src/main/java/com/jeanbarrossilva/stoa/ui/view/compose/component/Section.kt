@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.jeanbarrossilva.stoa.ui.R
+import com.jeanbarrossilva.stoa.ui.view.compose.theme.StoaTheme
 
 @Composable
 fun Section(
@@ -33,83 +34,83 @@ fun Section(
     padding: Dp = spacing,
     content: @Composable () -> Unit
 ) {
-    Column(
-        modifier
-            .fillMaxWidth(),
-        Arrangement.spacedBy(spacing)
-    ) {
-        Row(
-            Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 25.dp)
-                .padding(top = 25.dp),
-            verticalAlignment = Alignment.CenterVertically
+    StoaTheme {
+        Column(
+            modifier
+                .fillMaxWidth(),
+            Arrangement.spacedBy(spacing)
         ) {
-            Column(
+            Row(
                 Modifier
-                    .fillMaxWidth(0.5f),
-                Arrangement.spacedBy(2.dp)
+                    .fillMaxWidth()
+                    .padding(horizontal = 25.dp)
+                    .padding(top = 25.dp),
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    title,
-                    fontSize = 20.sp,
-                    fontFamily = Font(R.font.android_euclid).toFontFamily()
-                )
-
-                Text(
-                    description,
-                    Modifier.alpha(ContentAlpha.medium),
-                    fontFamily = Font(R.font.android_euclid_medium).toFontFamily()
-                )
-            }
-
-            Box(
-                Modifier
-                    .fillMaxWidth(),
-                Alignment.CenterEnd
-            ) {
-                Button(
-                    onClick = onActionButtonClick,
+                Column(
                     Modifier
-                        .clip(RoundedCornerShape(50.dp))
-                        .clickable(onClick = onActionButtonClick),
-                    elevation = ButtonDefaults.elevation(defaultElevation = 0.dp, pressedElevation = 0.dp, disabledElevation = 0.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        backgroundColor = Color.Transparent,
-                        contentColor = MaterialTheme.colors.primary
-                    ),
-                    contentPadding = PaddingValues(5.dp)
+                        .fillMaxWidth(0.5f),
+                    Arrangement.spacedBy(2.dp)
                 ) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(5.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(
-                            actionButtonTitle,
-                            color = MaterialTheme.colors.primary,
-                            fontFamily = Font(R.font.android_euclid_medium).toFontFamily(),
-                            letterSpacing = 0.sp,
-                            textAlign = TextAlign.End
-                        )
+                    Text(
+                        title,
+                        fontSize = 20.sp,
+                        fontFamily = Font(R.font.android_euclid).toFontFamily()
+                    )
 
-                        Icon(
-                            Icons.Rounded.ArrowForwardIos,
-                            contentDescription = null,
-                            Modifier
-                                .size(12.dp),
-                            tint = MaterialTheme.colors.primary
-                        )
+                    Text(
+                        description,
+                        Modifier.alpha(ContentAlpha.medium)
+                    )
+                }
+
+                Box(
+                    Modifier
+                        .fillMaxWidth(),
+                    Alignment.CenterEnd
+                ) {
+                    Button(
+                        onClick = onActionButtonClick,
+                        Modifier
+                            .clip(RoundedCornerShape(50.dp))
+                            .clickable(onClick = onActionButtonClick),
+                        elevation = ButtonDefaults.elevation(defaultElevation = 0.dp, pressedElevation = 0.dp, disabledElevation = 0.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor = Color.Transparent,
+                            contentColor = MaterialTheme.colors.primary
+                        ),
+                        contentPadding = PaddingValues(5.dp)
+                    ) {
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(5.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                actionButtonTitle,
+                                color = MaterialTheme.colors.primary,
+                                letterSpacing = 0.sp,
+                                textAlign = TextAlign.End
+                            )
+
+                            Icon(
+                                Icons.Rounded.ArrowForwardIos,
+                                contentDescription = null,
+                                Modifier
+                                    .size(12.dp),
+                                tint = MaterialTheme.colors.primary
+                            )
+                        }
                     }
                 }
             }
-        }
 
-        Surface(
-            Modifier
-                .fillMaxWidth()
-                .padding(horizontal = padding),
-            content = content
-        )
+            Surface(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = padding),
+                content = content
+            )
+        }
     }
 }
 

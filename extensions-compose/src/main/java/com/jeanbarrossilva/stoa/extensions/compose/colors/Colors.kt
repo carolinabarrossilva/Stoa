@@ -9,6 +9,43 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import com.jeanbarrossilva.stoa.extensions.context.colorOf
 
+private val defaultPrimaryColor = @Composable {
+    if (isSystemInDarkTheme()) Color(0xFFBB86FC) else Color(0xFF6200EE)
+}
+private val defaultPrimaryVariantColor = @Composable {
+    if (isSystemInDarkTheme()) Color(0xFF3700B3) else Color(0xFF3700B3)
+}
+private val defaultSecondaryColor = @Composable {
+    if (isSystemInDarkTheme()) Color(0xFF03DAC6) else Color(0xFF03DAC6)
+}
+private val defaultSecondaryVariant = @Composable {
+    if (isSystemInDarkTheme()) defaultSecondaryColor() else Color(0xFF018786)
+}
+private val defaultBackgroundColor = @Composable {
+    if (isSystemInDarkTheme()) Color(0xFF121212) else Color.White
+}
+private val defaultSurfaceColor = @Composable {
+    defaultBackgroundColor()
+}
+private val defaultErrorColor = @Composable {
+    if (isSystemInDarkTheme()) Color(0xFFCF6679) else Color(0xFFB00020)
+}
+private val defaultOnPrimaryColor = @Composable {
+    if (isSystemInDarkTheme()) Color.Black else Color.White
+}
+private val defaultOnSecondaryColor = @Composable {
+    Color.Black
+}
+private val defaultOnBackgroundColor = @Composable {
+    if (isSystemInDarkTheme()) Color.White else Color.Black
+}
+private val defaultOnSurfaceColor = @Composable {
+    defaultOnBackgroundColor()
+}
+private val defaultOnErrorColor = @Composable {
+    defaultOnPrimaryColor()
+}
+
 @Composable
 fun androidColors(
     primary: Color = Color(LocalContext.current colorOf android.R.attr.colorPrimary),
@@ -42,18 +79,18 @@ fun androidColors(
 
 @Composable
 fun colors(
-    primary: Color = if (isSystemInDarkTheme()) Color(0xFFBB86FC) else Color(0xFF6200EE),
-    primaryVariant: Color = if (isSystemInDarkTheme()) Color(0xFF3700B3) else Color(0xFF3700B3),
-    secondary: Color = if (isSystemInDarkTheme()) Color(0xFF03DAC6) else Color(0xFF03DAC6),
-    secondaryVariant: Color = if (isSystemInDarkTheme()) secondary else Color(0xFF018786),
-    background: Color = if (isSystemInDarkTheme()) Color(0xFF121212) else Color.White,
-    surface: Color = background,
-    error: Color = if (isSystemInDarkTheme()) Color(0xFFCF6679) else Color(0xFFB00020),
-    onPrimary: Color = if (isSystemInDarkTheme()) Color.Black else Color.White,
-    onSecondary: Color = Color.Black,
-    onBackground: Color = if (isSystemInDarkTheme()) Color.White else Color.Black,
-    onSurface: Color = onBackground,
-    onError: Color = onPrimary
+    primary: Color = defaultPrimaryColor(),
+    primaryVariant: Color = defaultPrimaryVariantColor(),
+    secondary: Color = defaultSecondaryColor(),
+    secondaryVariant: Color = defaultSecondaryVariant(),
+    background: Color = defaultBackgroundColor(),
+    surface: Color = defaultSurfaceColor(),
+    error: Color = defaultErrorColor(),
+    onPrimary: Color = defaultOnPrimaryColor(),
+    onSecondary: Color = defaultOnSecondaryColor(),
+    onBackground: Color = defaultOnBackgroundColor(),
+    onSurface: Color = defaultOnSurfaceColor(),
+    onError: Color = defaultOnErrorColor()
 ): Colors {
     return if (isSystemInDarkTheme()) {
         darkColors(
