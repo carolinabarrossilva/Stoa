@@ -14,7 +14,7 @@ import com.jeanbarrossilva.stoa.model.Author
 import com.jeanbarrossilva.stoa.model.Book
 import com.jeanbarrossilva.stoa.ui.R
 import com.jeanbarrossilva.stoa.ui.adapter.BookAdapter
-import com.jeanbarrossilva.stoa.ui.view.compose.component.Session
+import com.jeanbarrossilva.stoa.ui.view.compose.component.Section
 
 @Composable
 fun HomeUI(books: List<Book>, modifier: Modifier = Modifier) {
@@ -22,7 +22,7 @@ fun HomeUI(books: List<Book>, modifier: Modifier = Modifier) {
         modifier
             .fillMaxSize()
     ) {
-        Session(
+        Section(
             title = stringResource(R.string.SessionLayout_popular_title),
             description = stringResource(R.string.SessionLayout_popular_description),
             onActionButtonClick = {

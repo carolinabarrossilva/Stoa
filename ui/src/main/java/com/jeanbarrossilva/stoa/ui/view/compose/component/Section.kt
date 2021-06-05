@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.sp
 import com.jeanbarrossilva.stoa.ui.R
 
 @Composable
-fun Session(
+fun Section(
     modifier: Modifier = Modifier,
     title: String,
     description: String = "",
@@ -115,8 +115,8 @@ fun Session(
 
 @Preview(showBackground = true)
 @Composable
-fun Session_Preview() {
-    Session(
+fun Section_Preview() {
+    Section(
         title = stringResource(R.string.SessionLayout_popular_title),
         description = stringResource(R.string.SessionLayout_popular_description),
         onActionButtonClick = {
