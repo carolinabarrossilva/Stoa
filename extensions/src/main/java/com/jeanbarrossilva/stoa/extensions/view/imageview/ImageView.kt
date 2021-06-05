@@ -1,4 +1,4 @@
-package com.jeanbarrossilva.stoa.extensions.view.imgeview
+package com.jeanbarrossilva.stoa.extensions.view.imageview
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide
