@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.jeanbarrossilva.stoa.extensions.view.imgeview.load
 import com.jeanbarrossilva.stoa.model.Book
 import com.jeanbarrossilva.stoa.ui.R
 
@@ -21,7 +21,7 @@ class BookViewHolder(view: View): RecyclerView.ViewHolder(view) {
             book.author.name,
             book.title
         )
-        Glide.with(itemView.context).load(book.cover.url).into(coverView)
+        coverView.load(book.cover.url)
         titleView.text = book.title
         authorNameView.text = book.author.name
     }

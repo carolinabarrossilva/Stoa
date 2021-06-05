@@ -1,24 +1,34 @@
 package com.jeanbarrossilva.stoa.ui.fragment
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import com.jeanbarrossilva.stoa.model.Book
 import com.jeanbarrossilva.stoa.model.repository.AuthorRepository
 import com.jeanbarrossilva.stoa.presenter.HomePresenter
 import com.jeanbarrossilva.stoa.presenter.view.HomeView
-import com.jeanbarrossilva.stoa.ui.R
-import com.jeanbarrossilva.stoa.ui.adapter.BookAdapter
-import com.jeanbarrossilva.stoa.ui.view.SessionLayout
+import com.jeanbarrossilva.stoa.ui.view.compose.layout.HomeUI
 
-class HomeFragment: Fragment(R.layout.fragment_home), HomeView {
+class HomeFragment: Fragment(), HomeView {
+    private var books by mutableStateOf(emptyList<Book>())
+
     override val presenter = HomePresenter(this) {
         AuthorRepository.getAuthors()
     }
 
-    private lateinit var popularSessionLayout: SessionLayout
-    private lateinit var popularSessionContentView: RecyclerView
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        return ComposeView(requireContext()).apply {
+            setContent {
+                HomeUI(books)
+            }
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -26,10 +36,6 @@ class HomeFragment: Fragment(R.layout.fragment_home), HomeView {
     }
 
     override fun assignViews() {
-        view?.let { view ->
-            popularSessionLayout = view.findViewById(R.id.popular_session_layout)
-            popularSessionContentView = view.findViewById(R.id.popular_session_content_view)
-        }
     }
 
     override fun configViews() {
@@ -39,7 +45,7 @@ class HomeFragment: Fragment(R.layout.fragment_home), HomeView {
     }
 
     override fun showBooks(books: List<Book>) {
-        popularSessionContentView.adapter = BookAdapter(books, ::onBookClick)
+        this.books = books
     }
 
     override fun onBookClick(book: Book) {
