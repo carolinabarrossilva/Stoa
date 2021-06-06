@@ -5,6 +5,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,14 +24,20 @@ fun HomeUI(books: List<Book>, modifier: Modifier = Modifier) {
     }
 
     StoaTheme {
-        SearchPageScaffold(title = "Home", searchQuery, onQueryChange = {
-            searchQuery = it
-        }) {
+        SearchPageScaffold(
+            title = stringResource(R.string.PageScaffold_home_title),
+            searchQuery,
+            onQueryChange = {
+                searchQuery = it
+            },
+            modifier
+        ) {
             Section(
-                title = stringResource(R.string.SessionLayout_popular_title),
-                description = stringResource(R.string.SessionLayout_popular_description),
+                title = stringResource(R.string.Session_popular_title),
                 onActionButtonClick = {
-                }
+                },
+                spacing = 20.dp,
+                padding = 15.dp
             ) {
                 AndroidView(
                     { context ->
@@ -49,7 +56,7 @@ fun HomeUI(books: List<Book>, modifier: Modifier = Modifier) {
 }
 
 @Composable
-@Preview(showBackground = true)
+@Preview(locale = "pt-rBR", showBackground = true)
 private fun HomeUI_Preview() {
     HomeUI(books = Author.sample.books)
 }
