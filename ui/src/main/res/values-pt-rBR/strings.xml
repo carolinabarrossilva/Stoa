@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Session_actionButtonTitle">Ver tudo</string>
+    <string name="Session_popular_title">Popular</string>
+    <string name="view_book_content_description_cover">Capa do livro %2s, de %1s</string>
+    <string name="PageScaffold_home_title">Início</string>
+    <string name="SearchPageScaffold_field_hint">Pesquisar…</string>
+</resources>

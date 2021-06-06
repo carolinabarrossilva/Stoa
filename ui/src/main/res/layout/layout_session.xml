@@ -27,7 +27,7 @@
                 android:fontFamily="@font/android_euclid"
                 android:textSize="20sp"
                 android:textColor="?android:textColorPrimary"
-                tools:text="@string/SessionLayout_popular_title" />
+                tools:text="@string/Session_popular_title" />
 
             <TextView
                 android:id="@+id/description_view"
@@ -44,7 +44,7 @@
             android:layout_weight="0.3"
             android:padding="0dp"
             android:gravity="end|center_vertical"
-            android:text="@string/SessionLayout_actionButtonTitle"
+            android:text="@string/Session_actionButtonTitle"
             android:textAllCaps="false"
             android:textAlignment="gravity"
             android:letterSpacing="0"

@@ -24,11 +24,11 @@ fun HomeUI(books: List<Book>, modifier: Modifier = Modifier) {
     }
 
     StoaTheme {
-        SearchPageScaffold(title = "Home", searchQuery, onQueryChange = {
+        SearchPageScaffold(title = stringResource(R.string.PageScaffold_home_title), searchQuery, onQueryChange = {
             searchQuery = it
         }) {
             Section(
-                title = stringResource(R.string.SessionLayout_popular_title),
+                title = stringResource(R.string.Session_popular_title),
                 onActionButtonClick = {
                 },
             padding = 15.dp
@@ -50,7 +50,7 @@ fun HomeUI(books: List<Book>, modifier: Modifier = Modifier) {
 }
 
 @Composable
-@Preview(showBackground = true)
+@Preview(locale = "pt-rBR", showBackground = true)
 private fun HomeUI_Preview() {
     HomeUI(books = Author.sample.books)
 }

@@ -27,7 +27,7 @@ import com.jeanbarrossilva.stoa.ui.compose.theme.StoaTheme
 fun Section(
     modifier: Modifier = Modifier,
     title: String,
-    actionButtonTitle: String = stringResource(R.string.SessionLayout_actionButtonTitle),
+    actionButtonTitle: String = stringResource(R.string.Session_actionButtonTitle),
     onActionButtonClick: () -> Unit,
     spacing: Dp = 25.dp,
     padding: Dp = spacing,
@@ -112,7 +112,7 @@ fun Section(
 @Composable
 fun Section_Preview() {
     Section(
-        title = stringResource(R.string.SessionLayout_popular_title),
+        title = stringResource(R.string.Session_popular_title),
         onActionButtonClick = {
         }
     ) {
