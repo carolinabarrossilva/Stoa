@@ -5,6 +5,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,9 +29,9 @@ fun HomeUI(books: List<Book>, modifier: Modifier = Modifier) {
         }) {
             Section(
                 title = stringResource(R.string.SessionLayout_popular_title),
-                description = stringResource(R.string.SessionLayout_popular_description),
                 onActionButtonClick = {
-                }
+                },
+            padding = 15.dp
             ) {
                 AndroidView(
                     { context ->

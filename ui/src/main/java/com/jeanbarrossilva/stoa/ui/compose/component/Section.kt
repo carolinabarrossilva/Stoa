@@ -27,7 +27,6 @@ import com.jeanbarrossilva.stoa.ui.compose.theme.StoaTheme
 fun Section(
     modifier: Modifier = Modifier,
     title: String,
-    description: String = "",
     actionButtonTitle: String = stringResource(R.string.SessionLayout_actionButtonTitle),
     onActionButtonClick: () -> Unit,
     spacing: Dp = 25.dp,
@@ -47,20 +46,14 @@ fun Section(
                     .padding(top = 25.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Column(
+                Surface(
                     Modifier
-                        .fillMaxWidth(0.5f),
-                    Arrangement.spacedBy(2.dp)
+                        .fillMaxWidth(0.5f)
                 ) {
                     Text(
                         title,
                         fontSize = 20.sp,
                         fontFamily = Font(R.font.android_euclid).toFontFamily()
-                    )
-
-                    Text(
-                        description,
-                        Modifier.alpha(ContentAlpha.medium)
                     )
                 }
 
@@ -77,7 +70,7 @@ fun Section(
                         elevation = ButtonDefaults.elevation(defaultElevation = 0.dp, pressedElevation = 0.dp, disabledElevation = 0.dp),
                         colors = ButtonDefaults.buttonColors(
                             backgroundColor = Color.Transparent,
-                            contentColor = MaterialTheme.colors.primary
+                            contentColor = MaterialTheme.colors.onSurface.copy(ContentAlpha.medium)
                         ),
                         contentPadding = PaddingValues(5.dp)
                     ) {
@@ -87,7 +80,8 @@ fun Section(
                         ) {
                             Text(
                                 actionButtonTitle,
-                                color = MaterialTheme.colors.primary,
+                                Modifier
+                                    .alpha(ContentAlpha.medium),
                                 letterSpacing = 0.sp,
                                 textAlign = TextAlign.End
                             )
@@ -96,8 +90,8 @@ fun Section(
                                 Icons.Rounded.ArrowForwardIos,
                                 contentDescription = null,
                                 Modifier
-                                    .size(12.dp),
-                                tint = MaterialTheme.colors.primary
+                                    .size(12.dp)
+                                    .alpha(ContentAlpha.medium)
                             )
                         }
                     }
@@ -119,7 +113,6 @@ fun Section(
 fun Section_Preview() {
     Section(
         title = stringResource(R.string.SessionLayout_popular_title),
-        description = stringResource(R.string.SessionLayout_popular_description),
         onActionButtonClick = {
         }
     ) {
