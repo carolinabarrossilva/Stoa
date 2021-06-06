@@ -31,7 +31,7 @@ fun SearchPageScaffold(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
-    val fieldBackgroundColor = if (isSystemInDarkTheme()) colorOf("#F9F9F9") else MaterialTheme.colors.surface
+    val fieldBackgroundColor = if (isSystemInDarkTheme()) MaterialTheme.colors.surface else colorOf("#F9F9F9")
     var _query by remember {
         mutableStateOf(query)
     }
