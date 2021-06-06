@@ -65,6 +65,7 @@ fun Section(
                     Button(
                         onClick = onActionButtonClick,
                         Modifier
+                            .offset(x = 5.dp)
                             .clip(RoundedCornerShape(50.dp))
                             .clickable(onClick = onActionButtonClick),
                         elevation = ButtonDefaults.elevation(defaultElevation = 0.dp, pressedElevation = 0.dp, disabledElevation = 0.dp),
@@ -108,7 +109,7 @@ fun Section(
     }
 }
 
-@Preview(showBackground = true)
+@Preview(locale = "pt-rBR", showBackground = true)
 @Composable
 fun Section_Preview() {
     Section(
