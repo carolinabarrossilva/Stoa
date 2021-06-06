@@ -24,14 +24,20 @@ fun HomeUI(books: List<Book>, modifier: Modifier = Modifier) {
     }
 
     StoaTheme {
-        SearchPageScaffold(title = stringResource(R.string.PageScaffold_home_title), searchQuery, onQueryChange = {
-            searchQuery = it
-        }) {
+        SearchPageScaffold(
+            title = stringResource(R.string.PageScaffold_home_title),
+            searchQuery,
+            onQueryChange = {
+                searchQuery = it
+            },
+            modifier
+        ) {
             Section(
                 title = stringResource(R.string.Session_popular_title),
                 onActionButtonClick = {
                 },
-            padding = 15.dp
+                spacing = 20.dp,
+                padding = 15.dp
             ) {
                 AndroidView(
                     { context ->

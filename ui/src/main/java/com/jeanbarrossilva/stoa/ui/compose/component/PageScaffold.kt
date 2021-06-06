@@ -28,7 +28,7 @@ internal fun PageScaffold(
                     .background(MaterialTheme.colors.background)
                     .padding(horizontal = 25.dp)
                     .padding(top = 135.dp),
-                Arrangement.spacedBy(25.dp)
+                Arrangement.spacedBy(60.dp)
             ) {
                 Column(
                     Modifier
