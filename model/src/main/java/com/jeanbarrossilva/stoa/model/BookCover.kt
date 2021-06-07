@@ -1,3 +1,5 @@
 package com.jeanbarrossilva.stoa.model
 
-data class BookCover(val url: String)
+import java.io.Serializable
+
+data class BookCover(val url: String): Serializable

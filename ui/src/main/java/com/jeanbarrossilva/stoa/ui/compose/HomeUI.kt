@@ -16,9 +16,10 @@ import com.jeanbarrossilva.stoa.ui.adapter.BookAdapter
 import com.jeanbarrossilva.stoa.ui.compose.component.SearchPageScaffold
 import com.jeanbarrossilva.stoa.ui.compose.component.Section
 import com.jeanbarrossilva.stoa.ui.compose.theme.StoaTheme
+import com.jeanbarrossilva.stoa.ui.fragment.HomeFragment
 
 @Composable
-fun HomeUI(books: List<Book>, modifier: Modifier = Modifier) {
+fun HomeUI(fragment: HomeFragment, books: List<Book>, modifier: Modifier = Modifier) {
     var searchQuery by remember {
         mutableStateOf("")
     }
@@ -47,7 +48,8 @@ fun HomeUI(books: List<Book>, modifier: Modifier = Modifier) {
                         .fillMaxWidth()
                 ) { view ->
                     view.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
-                    view.adapter = BookAdapter(books) {
+                    view.adapter = BookAdapter(books) { book ->
+                        fragment.onBookClick(book)
                     }
                 }
             }
@@ -58,5 +60,8 @@ fun HomeUI(books: List<Book>, modifier: Modifier = Modifier) {
 @Composable
 @Preview(locale = "pt-rBR", showBackground = true)
 private fun HomeUI_Preview() {
-    HomeUI(books = Author.sample.books)
+    HomeUI(
+        HomeFragment(),
+        books = Author.sample.books
+    )
 }
