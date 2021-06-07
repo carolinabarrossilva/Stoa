@@ -5,4 +5,6 @@
     <string name="view_book_content_description_cover">Capa do livro %2s, de %1s</string>
     <string name="PageScaffold_home_title">Início</string>
     <string name="SearchPageScaffold_field_hint">Pesquisar…</string>
+    <string name="fragment_book_details_author">de %s</string>
+    <string name="fragment_book_details_buy">Comprar</string>
 </resources>

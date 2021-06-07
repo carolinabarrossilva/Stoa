@@ -2,12 +2,31 @@
 <navigation
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_main"
     app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.jeanbarrossilva.stoa.ui.fragment.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment">
+
+        <action
+            android:id="@+id/to_details_of"
+            app:destination="@id/bookDetailsFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/bookDetailsFragment"
+        android:name="com.jeanbarrossilva.stoa.ui.fragment.BookDetailsFragment"
+        android:label="BookDetailsFragment"
+        tools:layout="@layout/fragment_book_details">
+
+        <argument
+            android:name="book"
+            app:argType="com.jeanbarrossilva.stoa.model.Book" />
+
+    </fragment>
 
 </navigation>

@@ -2,4 +2,5 @@
 <resources>
     <color name="background">#121212</color>
     <color name="status_bar">#101010</color>
+    <color name="fragment_book_details_buy_button_background">@color/cardview_dark_background</color>
 </resources>
