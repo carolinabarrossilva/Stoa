@@ -1,5 +1,6 @@
 package com.jeanbarrossilva.stoa.ui.compose.component
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -46,7 +47,7 @@ fun SearchPageScaffold(
                     },
                     shape = RoundedCornerShape(10.dp),
                     colors = textFieldColors(
-                        backgroundColor = colorOf("#F9F9F9"),
+                        backgroundColor = if (isSystemInDarkTheme()) colorOf("#303030") else colorOf("#F9F9F9"),
                         cursorColor = MaterialTheme.colors.onSurface,
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent,
