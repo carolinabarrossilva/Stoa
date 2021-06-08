@@ -113,8 +113,10 @@
         android:text="@string/fragment_book_details_buy"
         android:textAllCaps="false"
         android:letterSpacing="0"
+        android:textColor="?android:textColorPrimaryInverse"
         app:icon="@drawable/ic_round_shopping_basket_24"
-        app:backgroundTint="@color/fragment_book_details_buy_button_background"
+        app:iconTint="?android:textColorPrimaryInverse"
+        app:backgroundTint="?android:textColorPrimary"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

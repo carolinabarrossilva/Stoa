@@ -1,8 +1,6 @@
 package com.jeanbarrossilva.stoa.ui.compose.component
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -21,39 +19,36 @@ internal fun PageScaffold(
     content: @Composable () -> Unit
 ) {
     StoaTheme {
-        StoaTheme {
+        Column(
+            modifier
+                .fillMaxSize()
+                .padding(horizontal = 25.dp)
+                .padding(top = 135.dp),
+            Arrangement.spacedBy(60.dp)
+        ) {
             Column(
-                modifier
-                    .fillMaxSize()
-                    .background(MaterialTheme.colors.background)
-                    .padding(horizontal = 25.dp)
-                    .padding(top = 135.dp),
-                Arrangement.spacedBy(60.dp)
+                Modifier
+                    .padding(horizontal = 25.dp),
+                Arrangement.spacedBy(15.dp)
             ) {
-                Column(
-                    Modifier
-                        .padding(horizontal = 25.dp),
-                    Arrangement.spacedBy(15.dp)
-                ) {
-                    Text(
-                        title,
-                        fontSize = 45.sp,
-                        fontFamily = fontFamilyResource(R.font.android_euclid)
-                    )
-
-                    Surface(
-                        Modifier
-                            .fillMaxWidth(),
-                        content = header
-                    )
-                }
+                Text(
+                    title,
+                    fontSize = 45.sp,
+                    fontFamily = fontFamilyResource(R.font.android_euclid)
+                )
 
                 Surface(
                     Modifier
                         .fillMaxWidth(),
-                    content = content
+                    content = header
                 )
             }
+
+            Surface(
+                Modifier
+                    .fillMaxWidth(),
+                content = content
+            )
         }
     }
 }
