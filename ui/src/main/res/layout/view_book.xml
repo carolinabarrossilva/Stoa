@@ -20,14 +20,20 @@
             android:padding="10dp"
             app:spacing="15dp">
 
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/cover_view"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:elevation="2dp"
-                android:adjustViewBounds="true"
-                app:riv_corner_radius="5dp"
-                tools:src="@drawable/img_view_book_placeholder_cover" />
+                android:layout_height="wrap_content">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/cover_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="2dp"
+                    android:adjustViewBounds="true"
+                    app:riv_corner_radius="5dp"
+                    tools:src="@drawable/img_view_book_placeholder_cover" />
+
+            </FrameLayout>
 
             <com.jeanbarrossilva.stoa.ui.view.ColumnLayout
                 android:layout_width="wrap_content"

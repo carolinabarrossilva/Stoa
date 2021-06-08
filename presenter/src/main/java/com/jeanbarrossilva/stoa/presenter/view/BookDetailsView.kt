@@ -6,5 +6,7 @@ import com.jeanbarrossilva.stoa.presenter.core.view.View
 interface BookDetailsView: View {
     val book: Book
 
+    fun showDetails()
+
     fun buy()
 }

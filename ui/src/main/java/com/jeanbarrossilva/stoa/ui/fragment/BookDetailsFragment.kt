@@ -5,6 +5,8 @@ import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
+import com.jeanbarrossilva.stoa.extensions.any.delayedBy
+import com.jeanbarrossilva.stoa.extensions.number.dp
 import com.jeanbarrossilva.stoa.extensions.view.imageview.load
 import com.jeanbarrossilva.stoa.model.Book
 import com.jeanbarrossilva.stoa.presenter.BookDetailsPresenter
@@ -21,6 +23,25 @@ class BookDetailsFragment(override val book: Book): Fragment(R.layout.fragment_b
     private lateinit var buyButton: MaterialButton
 
     override val presenter = BookDetailsPresenter(this)
+
+    private fun animateDetailsEntrance() {
+        listOf(coverView, authorNameView, titleView, subtitleView, descriptionView).forEachIndexed { index, view ->
+            val defaultTranslationY = view.translationY
+            val defaultAlpha = view.alpha
+
+            view.translationY += 20.dp(context)
+            view.alpha = 0f
+            delayedBy(if (index == 0) 0 else 200 + (index * 10L)) {
+                activity?.runOnUiThread {
+                    view.animate()
+                        .setDuration(200)
+                        .translationY(defaultTranslationY)
+                        .alpha(defaultAlpha)
+                        .start()
+                }
+            }
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,14 +60,18 @@ class BookDetailsFragment(override val book: Book): Fragment(R.layout.fragment_b
     }
 
     override fun configViews() {
+    }
+
+    override fun onError(error: Throwable) {
+    }
+
+    override fun showDetails() {
+        animateDetailsEntrance()
         coverView.load(book.cover.url)
         authorNameView.text = context?.getString(R.string.fragment_book_details_author)?.format(book.author.name)
         titleView.text = book.title
         subtitleView.text = book.subtitle
         descriptionView.text = book.description
-    }
-
-    override fun onError(error: Throwable) {
     }
 
     override fun buy() {

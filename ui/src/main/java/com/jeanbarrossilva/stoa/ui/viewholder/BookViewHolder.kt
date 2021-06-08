@@ -13,9 +13,9 @@ class BookViewHolder(view: View): RecyclerView.ViewHolder(view) {
     private val titleView = view.findViewById<TextView>(R.id.title_view)
     private val authorNameView = view.findViewById<TextView>(R.id.author_name_view)
 
-    fun bind(book: Book, onBookClick: (Book) -> Unit) {
-        itemView.setOnClickListener {
-            onBookClick(book)
+    fun bind(book: Book, onBookClick: (View, Book) -> Unit) {
+        itemView.setOnClickListener { view ->
+            onBookClick(view, book)
         }
         coverView.contentDescription = itemView.context.getString(R.string.view_book_content_description_cover).format(
             book.author.name,

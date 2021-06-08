@@ -6,5 +6,5 @@ import com.jeanbarrossilva.stoa.presenter.core.view.View
 interface HomeView: View {
     fun showBooks(books: List<Book>)
 
-    fun onBookClick(book: Book)
+    fun onBookClick(view: android.view.View, book: Book)
 }

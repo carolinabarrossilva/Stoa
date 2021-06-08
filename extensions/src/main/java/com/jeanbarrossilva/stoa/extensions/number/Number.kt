@@ -22,6 +22,10 @@ fun Number.dp(context: Context?): Int {
     return context?.convert(this to TypedValue.COMPLEX_UNIT_DIP) ?: 0
 }
 
+inline infix fun <reified N: Number> N.percentOf(other: Number): N {
+    return this.toFloat().div(100).times(other.toFloat()).to()
+}
+
 inline fun <reified T : Number> Number.to(): T {
     return to(T::class)
 }
