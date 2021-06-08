@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
 import com.google.android.material.button.MaterialButton
+import com.jeanbarrossilva.stoa.extensions.any.delayedBy
+import com.jeanbarrossilva.stoa.extensions.number.dp
 import com.jeanbarrossilva.stoa.extensions.view.imageview.load
 import com.jeanbarrossilva.stoa.model.Book
 import com.jeanbarrossilva.stoa.presenter.BookDetailsPresenter
@@ -13,12 +14,7 @@ import com.jeanbarrossilva.stoa.presenter.view.BookDetailsView
 import com.jeanbarrossilva.stoa.ui.R
 import com.makeramen.roundedimageview.RoundedImageView
 
-class BookDetailsFragment: Fragment(R.layout.fragment_book_details), BookDetailsView {
-    private val navArgs by navArgs<BookDetailsFragmentArgs>()
-    private val book: Book by lazy {
-        navArgs.book
-    }
-
+class BookDetailsFragment(override val book: Book): Fragment(R.layout.fragment_book_details), BookDetailsView {
     private lateinit var coverView: RoundedImageView
     private lateinit var authorNameView: TextView
     private lateinit var titleView: TextView
@@ -27,6 +23,25 @@ class BookDetailsFragment: Fragment(R.layout.fragment_book_details), BookDetails
     private lateinit var buyButton: MaterialButton
 
     override val presenter = BookDetailsPresenter(this)
+
+    private fun animateDetailsEntrance() {
+        listOf(coverView, authorNameView, titleView, subtitleView, descriptionView).forEachIndexed { index, view ->
+            val defaultTranslationY = view.translationY
+            val defaultAlpha = view.alpha
+
+            view.translationY += 20.dp(context)
+            view.alpha = 0f
+            delayedBy(if (index == 0) 0 else 200 + (index * 10L)) {
+                activity?.runOnUiThread {
+                    view.animate()
+                        .setDuration(200)
+                        .translationY(defaultTranslationY)
+                        .alpha(defaultAlpha)
+                        .start()
+                }
+            }
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,6 +60,13 @@ class BookDetailsFragment: Fragment(R.layout.fragment_book_details), BookDetails
     }
 
     override fun configViews() {
+    }
+
+    override fun onError(error: Throwable) {
+    }
+
+    override fun showDetails() {
+        animateDetailsEntrance()
         coverView.load(book.cover.url)
         authorNameView.text = context?.getString(R.string.fragment_book_details_author)?.format(book.author.name)
         titleView.text = book.title
@@ -52,9 +74,6 @@ class BookDetailsFragment: Fragment(R.layout.fragment_book_details), BookDetails
         descriptionView.text = book.description
     }
 
-    override fun onError(error: Throwable) {
-    }
-
-    override fun buy(book: Book) {
+    override fun buy() {
     }
 }

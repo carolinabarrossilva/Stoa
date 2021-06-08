@@ -4,5 +4,9 @@ import com.jeanbarrossilva.stoa.model.Book
 import com.jeanbarrossilva.stoa.presenter.core.view.View
 
 interface BookDetailsView: View {
-    fun buy(book: Book)
+    val book: Book
+
+    fun showDetails()
+
+    fun buy()
 }

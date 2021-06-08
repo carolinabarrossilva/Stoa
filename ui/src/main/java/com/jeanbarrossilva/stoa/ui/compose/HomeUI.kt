@@ -48,8 +48,8 @@ fun HomeUI(fragment: HomeFragment, books: List<Book>, modifier: Modifier = Modif
                         .fillMaxWidth()
                 ) { view ->
                     view.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
-                    view.adapter = BookAdapter(books) { book ->
-                        fragment.onBookClick(book)
+                    view.adapter = BookAdapter(books) { bookView, book ->
+                        fragment.onBookClick(bookView, book)
                     }
                 }
             }
