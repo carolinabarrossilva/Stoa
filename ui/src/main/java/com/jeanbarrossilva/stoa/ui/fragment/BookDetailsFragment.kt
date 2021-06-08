@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
 import com.google.android.material.button.MaterialButton
 import com.jeanbarrossilva.stoa.extensions.view.imageview.load
 import com.jeanbarrossilva.stoa.model.Book
@@ -13,12 +12,7 @@ import com.jeanbarrossilva.stoa.presenter.view.BookDetailsView
 import com.jeanbarrossilva.stoa.ui.R
 import com.makeramen.roundedimageview.RoundedImageView
 
-class BookDetailsFragment: Fragment(R.layout.fragment_book_details), BookDetailsView {
-    private val navArgs by navArgs<BookDetailsFragmentArgs>()
-    private val book: Book by lazy {
-        navArgs.book
-    }
-
+class BookDetailsFragment(override val book: Book): Fragment(R.layout.fragment_book_details), BookDetailsView {
     private lateinit var coverView: RoundedImageView
     private lateinit var authorNameView: TextView
     private lateinit var titleView: TextView
@@ -55,6 +49,6 @@ class BookDetailsFragment: Fragment(R.layout.fragment_book_details), BookDetails
     override fun onError(error: Throwable) {
     }
 
-    override fun buy(book: Book) {
+    override fun buy() {
     }
 }
