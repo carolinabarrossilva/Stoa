@@ -23,11 +23,10 @@ import com.jeanbarrossilva.stoa.ui.fragment.factory.BookDetailsFragmentFactory
 import com.makeramen.roundedimageview.RoundedImageView
 
 class HomeFragment: Fragment(), HomeView {
-    private var books by mutableStateOf(emptyList<Book>())
-
     override val presenter = HomePresenter(this) {
         AuthorRepository.getAuthors()
     }
+    var books by mutableStateOf(emptyList<Book>())
 
     private fun animateBookViewTransitionFor(view: View, onUpdate: ValueAnimator.() -> Unit) {
         view.findViewById<RoundedImageView>(R.id.cover_view)?.animate()

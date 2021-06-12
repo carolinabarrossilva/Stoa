@@ -1,22 +1,26 @@
 package com.jeanbarrossilva.stoa.ui.compose
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.jeanbarrossilva.stoa.extensions.any.doIf
 import com.jeanbarrossilva.stoa.extensions.compose.composition.LocalActivity
+import com.jeanbarrossilva.stoa.extensions.compose.lazylistscope.items
 import com.jeanbarrossilva.stoa.model.Author
 import com.jeanbarrossilva.stoa.model.Book
 import com.jeanbarrossilva.stoa.ui.R
 import com.jeanbarrossilva.stoa.ui.adapter.BookAdapter
+import com.jeanbarrossilva.stoa.ui.compose.component.BookSearchItem
+import com.jeanbarrossilva.stoa.ui.compose.component.EmptySearchResults
 import com.jeanbarrossilva.stoa.ui.compose.component.SearchPageScaffold
 import com.jeanbarrossilva.stoa.ui.compose.component.Section
 import com.jeanbarrossilva.stoa.ui.compose.theme.StoaTheme
@@ -26,6 +30,11 @@ import com.jeanbarrossilva.stoa.ui.fragment.HomeFragment
 fun HomeUI(fragment: HomeFragment, books: List<Book>, modifier: Modifier = Modifier) {
     var searchQuery by remember {
         mutableStateOf("")
+    }
+    val matchingBooks = fragment.books.filter { book ->
+        searchQuery in book
+    }.doIf(searchQuery.isEmpty()) {
+        emptyList()
     }
 
     CompositionLocalProvider(LocalActivity provides fragment.activity) {
@@ -37,12 +46,32 @@ fun HomeUI(fragment: HomeFragment, books: List<Book>, modifier: Modifier = Modif
                     searchQuery = it
                 },
                 searchContent = {
-                    Box(
-                        Modifier
-                            .fillMaxSize()
-                    ) {
-                        Text("Content")
-                    }
+                    if (searchQuery.isEmpty())
+                        EmptySearchResults(
+                            Modifier
+                                .padding(top = 50.dp)
+                                .padding(horizontal = 20.dp)
+                        )
+                    else
+                        LazyColumn {
+                            items(matchingBooks, topSpacing = 20.dp, bottomSpacing = 20.dp) { book ->
+                                AndroidView({ context ->
+                                    ComposeView(context)
+                                }) { view ->
+                                    view.setContent {
+                                        BookSearchItem(
+                                            book,
+                                            view::performClick,
+                                            Modifier
+                                                .padding(horizontal = 20.dp)
+                                        )
+                                    }
+                                    view.setOnClickListener {
+                                        fragment.onBookClick(view, book)
+                                    }
+                                }
+                            }
+                        }
                 }
             ) {
                 Section(
@@ -60,9 +89,7 @@ fun HomeUI(fragment: HomeFragment, books: List<Book>, modifier: Modifier = Modif
                             .fillMaxWidth()
                     ) { view ->
                         view.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
-                        view.adapter = BookAdapter(books) { bookView, book ->
-                            fragment.onBookClick(bookView, book)
-                        }
+                        view.adapter = BookAdapter(books, fragment::onBookClick)
                     }
                 }
             }

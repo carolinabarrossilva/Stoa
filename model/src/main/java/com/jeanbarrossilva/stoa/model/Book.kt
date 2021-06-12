@@ -8,4 +8,10 @@ data class Book(
     val title: String,
     val subtitle: String,
     val description: String
-): Serializable
+): Serializable {
+    operator fun contains(other: CharSequence): Boolean {
+        return author.name.contains(other, ignoreCase = true)
+            || title.contains(other, ignoreCase = true)
+            || subtitle.contains(other, ignoreCase = true)
+    }
+}

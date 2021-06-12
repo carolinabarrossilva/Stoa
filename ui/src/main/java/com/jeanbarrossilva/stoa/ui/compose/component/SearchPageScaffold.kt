@@ -103,6 +103,7 @@ fun SearchPageScaffold(
                 )
             },
             spacing = pageScaffoldSpacing,
+            contentHorizontalPadding = if (isSearching) 0.dp else PageScaffoldDefaults.DefaultHorizontalPadding,
             content = if (isSearching) searchContent else content
         )
     }

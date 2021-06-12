@@ -15,7 +15,7 @@ import com.jeanbarrossilva.stoa.ui.compose.defaults.PageScaffoldDefaults.Default
 import com.jeanbarrossilva.stoa.ui.compose.theme.StoaTheme
 
 @Composable
-fun PageScaffold(
+internal fun PageScaffold(
     title: String,
     modifier: Modifier = Modifier,
     titleModifier: Modifier = Modifier,
@@ -23,6 +23,7 @@ fun PageScaffold(
     contentModifier: Modifier = Modifier,
     header: @Composable () -> Unit,
     spacing: Dp = DefaultSpacing,
+    contentHorizontalPadding: Dp = DefaultHorizontalPadding,
     content: @Composable () -> Unit
 ) {
     StoaTheme {
@@ -50,7 +51,7 @@ fun PageScaffold(
             Surface(
                 contentModifier
                     .fillMaxWidth()
-                    .padding(horizontal = DefaultHorizontalPadding),
+                    .padding(horizontal = contentHorizontalPadding),
                 content = content
             )
         }
