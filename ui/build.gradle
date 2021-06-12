@@ -36,6 +36,7 @@ android {
 
     kotlinOptions {
         jvmTarget = jvm_target
+        freeCompilerArgs += ['-Xopt-in=kotlin.RequiresOptIn']
     }
 
     composeOptions {
@@ -58,7 +59,8 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
     implementation 'com.github.duanhong169:drawabletoolbox:1.0.7'
-    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.google.accompanist:accompanist-glide:0.11.1'
     implementation "com.google.android.material:material:$material_version"
+    implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation "io.reactivex.rxjava3:rxkotlin:$rxkotlin_version"
 }

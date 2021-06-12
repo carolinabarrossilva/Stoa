@@ -1,7 +1,7 @@
 package com.jeanbarrossilva.stoa.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.jeanbarrossilva.stoa.ui.R
 
 class MainActivity: AppCompatActivity() {
