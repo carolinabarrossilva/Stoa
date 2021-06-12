@@ -1,6 +1,9 @@
 package com.jeanbarrossilva.stoa.ui.compose
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -9,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.jeanbarrossilva.stoa.extensions.compose.composition.LocalActivity
 import com.jeanbarrossilva.stoa.model.Author
 import com.jeanbarrossilva.stoa.model.Book
 import com.jeanbarrossilva.stoa.ui.R
@@ -24,32 +28,41 @@ fun HomeUI(fragment: HomeFragment, books: List<Book>, modifier: Modifier = Modif
         mutableStateOf("")
     }
 
-    StoaTheme {
-        SearchPageScaffold(
-            title = stringResource(R.string.PageScaffold_home_title),
-            searchQuery,
-            onQueryChange = {
-                searchQuery = it
-            },
-            modifier
-        ) {
-            Section(
-                title = stringResource(R.string.Session_popular_title),
-                onActionButtonClick = {
+    CompositionLocalProvider(LocalActivity provides fragment.activity) {
+        StoaTheme(modifier) {
+            SearchPageScaffold(
+                title = stringResource(R.string.PageScaffold_home_title),
+                searchQuery,
+                onQueryChange = {
+                    searchQuery = it
                 },
-                spacing = 20.dp,
-                padding = 15.dp
+                searchContent = {
+                    Box(
+                        Modifier
+                            .fillMaxSize()
+                    ) {
+                        Text("Content")
+                    }
+                }
             ) {
-                AndroidView(
-                    { context ->
-                        RecyclerView(context)
+                Section(
+                    title = stringResource(R.string.Session_popular_title),
+                    onActionButtonClick = {
                     },
-                    Modifier
-                        .fillMaxWidth()
-                ) { view ->
-                    view.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
-                    view.adapter = BookAdapter(books) { bookView, book ->
-                        fragment.onBookClick(bookView, book)
+                    spacing = 20.dp,
+                    padding = 15.dp
+                ) {
+                    AndroidView(
+                        { context ->
+                            RecyclerView(context)
+                        },
+                        Modifier
+                            .fillMaxWidth()
+                    ) { view ->
+                        view.layoutManager = LinearLayoutManager(view.context, LinearLayoutManager.HORIZONTAL, false)
+                        view.adapter = BookAdapter(books) { bookView, book ->
+                            fragment.onBookClick(bookView, book)
+                        }
                     }
                 }
             }
