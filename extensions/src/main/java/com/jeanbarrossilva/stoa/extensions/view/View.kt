@@ -12,7 +12,9 @@ import kotlin.reflect.KClass
 internal inline fun <reified V: View> View.search(viewClass: KClass<V>, isInclusive: Boolean): V? {
     return when {
         this::class == viewClass && isInclusive -> this as V
-        this is ViewGroup -> children.filterIsInstance(viewClass.java).firstOrNull()?.searchFor(isInclusive = true)
+        this is ViewGroup -> children.find { view ->
+            view.searchFor<V>(isInclusive = true) != null
+        } as? V
         else -> null
     }
 }
