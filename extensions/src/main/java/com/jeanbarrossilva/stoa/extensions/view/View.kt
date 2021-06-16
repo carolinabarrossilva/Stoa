@@ -10,16 +10,11 @@ import kotlin.reflect.KClass
 @Suppress("UNCHECKED_CAST")
 @PublishedApi
 internal fun <V: View> View.search(viewClass: KClass<V>, isInclusive: Boolean): V? {
-    var foundView: V? = null
-    if (this::class == viewClass && isInclusive)
-        foundView = this as V
-    else if (this is ViewGroup)
-        for (child in children)
-            if (child::class == viewClass)
-                foundView = child as V
-            else if (child is ViewGroup)
-                foundView = child.search(viewClass, isInclusive)
-    return foundView
+    return when {
+        this::class == viewClass && isInclusive -> this as V
+        this is ViewGroup -> children.filterIsInstance(viewClass.java).firstOrNull()
+        else -> null
+    }
 }
 
 /**
