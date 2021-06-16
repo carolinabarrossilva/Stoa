@@ -16,4 +16,15 @@
         app:navGraph="@navigation/navigation_main"
         app:defaultNavHost="true" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/activity_main_content_description_fab_add"
+        app:tint="?android:textColorPrimaryInverse"
+        app:backgroundTint="?android:textColorPrimary"
+        tools:src="@drawable/ic_round_add_24" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

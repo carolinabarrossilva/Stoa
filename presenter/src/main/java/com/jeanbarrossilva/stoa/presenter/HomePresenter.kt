@@ -20,7 +20,4 @@ class HomePresenter(override val view: HomeView, private val dataSource: DataSou
             }
         )
     }
-
-    override fun finish() {
-    }
 }

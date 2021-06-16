@@ -14,4 +14,8 @@ data class Book(
             || title.contains(other, ignoreCase = true)
             || subtitle.contains(other, ignoreCase = true)
     }
+
+    companion object {
+        val empty = Book(Author.empty, BookCover.empty, title = "", subtitle = "", description = "")
+    }
 }

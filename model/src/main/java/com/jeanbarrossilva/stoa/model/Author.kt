@@ -11,6 +11,7 @@ data class Author(val name: String): Serializable {
                 author.books
             }
 
+        val empty = Author("")
         val sample = Author("André Silva").apply {
             val book = Book(
                 author = this,

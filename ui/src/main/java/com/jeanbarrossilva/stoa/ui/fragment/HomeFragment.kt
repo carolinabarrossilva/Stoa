@@ -1,6 +1,7 @@
 package com.jeanbarrossilva.stoa.ui.fragment
 
 import android.animation.ValueAnimator
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import androidx.navigation.fragment.findNavController
+import com.jeanbarrossilva.stoa.extensions.context.activity.fab
+import com.jeanbarrossilva.stoa.extensions.context.colorOf
 import com.jeanbarrossilva.stoa.extensions.fragmenttransaction.replace
 import com.jeanbarrossilva.stoa.extensions.number.percentOf
 import com.jeanbarrossilva.stoa.model.Book
@@ -52,10 +56,26 @@ class HomeFragment: Fragment(), HomeView {
         presenter.start()
     }
 
+    override fun onResume() {
+        super.onResume()
+        activity?.fab?.show()
+    }
+
     override fun assignViews() {
     }
 
     override fun configViews() {
+    }
+
+    override fun onInitialFabConfig() {
+        context?.let { context ->
+            activity?.fab?.setImageResource(R.drawable.ic_round_add_24)
+            activity?.fab?.imageTintList = ColorStateList.valueOf(context colorOf android.R.attr.textColorPrimaryInverse)
+            activity?.fab?.setBackgroundColor(context colorOf android.R.attr.textColorPrimary)
+            activity?.fab?.setOnClickListener {
+                goToComposer()
+            }
+        }
     }
 
     override fun onError(error: Throwable) {
@@ -67,6 +87,8 @@ class HomeFragment: Fragment(), HomeView {
 
     override fun onBookClick(view: View, book: Book) {
         var willGoToBookDetails = false
+
+        activity?.fab?.hide()
         animateBookViewTransitionFor(view) {
             parentFragmentManager.commit {
                 if (!willGoToBookDetails && currentPlayTime > 35L percentOf totalDuration) {
@@ -81,5 +103,9 @@ class HomeFragment: Fragment(), HomeView {
                 }
             }
         }
+    }
+
+    override fun goToComposer() {
+        findNavController().navigate(HomeFragmentDirections.compose())
     }
 }
