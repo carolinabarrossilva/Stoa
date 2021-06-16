@@ -9,5 +9,11 @@ interface View {
 
     fun configViews()
 
+    fun onInitialFabConfig() {
+    }
+
+    fun onLastFabConfig() {
+    }
+
     fun onError(error: Throwable)
 }

@@ -8,6 +8,8 @@
 
     <string name="Session_popular_title">Popular</string>
 
+    <string name="activity_main_content_description_fab_add">Add</string>
+
     <string
         name="view_book_placeholder_title"
         translatable="false">

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jeanbarrossilva.stoa.extensions.any.doIf
 import com.jeanbarrossilva.stoa.extensions.compose.composition.LocalActivity
 import com.jeanbarrossilva.stoa.extensions.compose.lazylistscope.items
+import com.jeanbarrossilva.stoa.extensions.context.activity.fab
 import com.jeanbarrossilva.stoa.model.Author
 import com.jeanbarrossilva.stoa.model.Book
 import com.jeanbarrossilva.stoa.ui.R
@@ -42,6 +43,9 @@ fun HomeUI(fragment: HomeFragment, books: List<Book>, modifier: Modifier = Modif
             SearchPageScaffold(
                 title = stringResource(R.string.PageScaffold_home_title),
                 searchQuery,
+                onSearchToggle = { isSearching ->
+                    if (isSearching) fragment.activity?.fab?.hide() else fragment.activity?.fab?.show()
+                },
                 onQueryChange = {
                     searchQuery = it
                 },

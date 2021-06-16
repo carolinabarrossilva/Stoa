@@ -4,6 +4,10 @@
         <attr name="spacing" />
     </declare-styleable>
 
+    <declare-styleable name="RowLayout">
+        <attr name="spacing" />
+    </declare-styleable>
+
     <declare-styleable name="SessionLayout">
         <attr name="title" />
         <attr name="description" />
