@@ -1,6 +1,7 @@
 package com.jeanbarrossilva.stoa.extensions.context
 
 import android.content.Context
+import android.content.res.Configuration
 import android.content.res.TypedArray
 import android.graphics.Color
 import android.graphics.Typeface
@@ -13,6 +14,9 @@ import androidx.core.content.res.use
 import androidx.core.content.withStyledAttributes
 import com.jeanbarrossilva.stoa.extensions.any.doIf
 import com.jeanbarrossilva.stoa.extensions.number.to
+
+val Context.isSystemInDarkTheme
+    get() = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
 
 @PublishedApi
 internal inline infix fun <reified N: Number> Context.convert(conversion: Pair<Number, Int>): N {

@@ -8,4 +8,7 @@
     <string name="fragment_book_details_author">de %s</string>
     <string name="fragment_book_details_buy">Comprar</string>
     <string name="activity_main_content_description_fab_add">Adicionar</string>
+    <string name="fragment_home">Início</string>
+    <string name="fragment_book_composer">Compor</string>
+    <string name="fragment_book_details">Detalhes</string>
 </resources>

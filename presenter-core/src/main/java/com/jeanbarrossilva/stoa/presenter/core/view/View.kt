@@ -9,6 +9,9 @@ interface View {
 
     fun configViews()
 
+    fun configToolbar() {
+    }
+
     fun onInitialFabConfig() {
     }
 

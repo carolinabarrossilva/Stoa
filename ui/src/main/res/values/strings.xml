@@ -27,6 +27,11 @@
     </string>
     <string name="view_book_content_description_cover">%1s\'s %2s cover</string>
 
+    <string name="fragment_home">Home</string>
+
+    <string name="fragment_book_composer">Compose</string>
+
+    <string name="fragment_book_details">Details</string>
     <string name="fragment_book_details_author">%s\'s</string>
     <string name="fragment_book_details_buy">Buy</string>
     <string
