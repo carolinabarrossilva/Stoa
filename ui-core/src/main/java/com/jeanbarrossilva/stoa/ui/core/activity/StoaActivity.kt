@@ -3,11 +3,11 @@ package com.jeanbarrossilva.stoa.ui.core.activity
 import android.graphics.drawable.ColorDrawable
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.jeanbarrossilva.stoa.extensions.context.activity.toolbar
 import com.jeanbarrossilva.stoa.extensions.context.activity.view
 import com.jeanbarrossilva.stoa.extensions.context.colorOf
 import com.jeanbarrossilva.stoa.extensions.context.isSystemInDarkTheme
@@ -17,10 +17,6 @@ import com.jeanbarrossilva.stoa.extensions.window.insetsControllerCompat
 import com.jeanbarrossilva.stoa.ui.core.R
 
 open class StoaActivity: AppCompatActivity() {
-    private val toolbar by lazy {
-        view?.searchFor<Toolbar>()
-    }
-
     private fun configSystemBarsColor() {
         window.insetsControllerCompat.isAppearanceLightStatusBars = !isSystemInDarkTheme
         window.insetsControllerCompat.isAppearanceLightNavigationBars = !isSystemInDarkTheme
@@ -33,8 +29,13 @@ open class StoaActivity: AppCompatActivity() {
         if (toolbar != null && drawerLayout != null) {
             setSupportActionBar(toolbar)
             setupActionBarWithNavController(findNavController(), drawerLayout)
-            toolbar!!.setNavigationOnClickListener {
-                drawerLayout.toggle()
+            findNavController().addOnDestinationChangedListener { controller, destination, _ ->
+                toolbar?.setNavigationOnClickListener {
+                    if (destination.id == controller.graph.startDestination)
+                        drawerLayout.toggle()
+                    else
+                        findNavController().popBackStack()
+                }
             }
         }
     }
