@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
 import com.jeanbarrossilva.stoa.extensions.any.delayedBy
+import com.jeanbarrossilva.stoa.extensions.context.activity.toolbar
 import com.jeanbarrossilva.stoa.extensions.number.dp
 import com.jeanbarrossilva.stoa.extensions.view.imageview.load
 import com.jeanbarrossilva.stoa.model.Book
@@ -60,6 +61,10 @@ class BookDetailsFragment(override val book: Book): Fragment(R.layout.fragment_b
     }
 
     override fun configViews() {
+    }
+
+    override fun configToolbar() {
+        activity?.toolbar?.title = book.title
     }
 
     override fun onError(error: Throwable) {

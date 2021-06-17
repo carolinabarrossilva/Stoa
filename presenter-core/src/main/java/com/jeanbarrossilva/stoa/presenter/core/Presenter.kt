@@ -8,6 +8,7 @@ interface Presenter<V: View> {
     fun start() {
         view.assignViews()
         view.configViews()
+        view.configToolbar()
         view.onInitialFabConfig()
     }
 

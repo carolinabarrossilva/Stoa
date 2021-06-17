@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.navigation.fragment.findNavController
 import com.jeanbarrossilva.stoa.extensions.context.activity.fab
+import com.jeanbarrossilva.stoa.extensions.context.activity.toolbar
 import com.jeanbarrossilva.stoa.extensions.context.colorOf
 import com.jeanbarrossilva.stoa.extensions.fragmenttransaction.replace
 import com.jeanbarrossilva.stoa.extensions.number.percentOf
@@ -37,9 +38,7 @@ class HomeFragment: Fragment(), HomeView {
             ?.setDuration(150)
             ?.yBy(100f)
             ?.alpha(0f)
-            ?.setUpdateListener { valueAnimator ->
-                valueAnimator.onUpdate()
-            }
+            ?.setUpdateListener(onUpdate)
             ?.start()
     }
 
@@ -58,6 +57,7 @@ class HomeFragment: Fragment(), HomeView {
 
     override fun onResume() {
         super.onResume()
+        configToolbar()
         activity?.fab?.show()
     }
 
@@ -65,6 +65,10 @@ class HomeFragment: Fragment(), HomeView {
     }
 
     override fun configViews() {
+    }
+
+    override fun configToolbar() {
+        activity?.toolbar?.setTitle(R.string.fragment_home)
     }
 
     override fun onInitialFabConfig() {
