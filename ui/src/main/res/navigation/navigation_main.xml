@@ -19,11 +19,31 @@
             app:popEnterAnim="@anim/activity_open_enter"
             app:popExitAnim="@anim/activity_close_exit" />
 
+        <action
+            android:id="@+id/to_details_of"
+            app:destination="@id/bookDetailsFragment"
+            app:enterAnim="@anim/activity_open_enter"
+            app:exitAnim="@anim/activity_close_exit"
+            app:popEnterAnim="@anim/activity_open_enter"
+            app:popExitAnim="@anim/activity_close_exit" />
+
     </fragment>
 
     <fragment
         android:id="@+id/bookComposerFragment"
         android:name="com.jeanbarrossilva.stoa.ui.fragment.BookComposerFragment"
         android:label="@string/fragment_book_composer" />
+
+    <fragment
+        android:id="@+id/bookDetailsFragment"
+        android:name="com.jeanbarrossilva.stoa.ui.fragment.BookDetailsFragment"
+        android:label=""
+        tools:layout="@layout/fragment_book_details">
+
+        <argument
+            android:name="book"
+            app:argType="com.jeanbarrossilva.stoa.model.Book" />
+
+    </fragment>
 
 </navigation>

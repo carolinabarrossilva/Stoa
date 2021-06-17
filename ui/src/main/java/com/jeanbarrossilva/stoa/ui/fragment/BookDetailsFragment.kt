@@ -4,18 +4,20 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.button.MaterialButton
 import com.jeanbarrossilva.stoa.extensions.any.delayedBy
 import com.jeanbarrossilva.stoa.extensions.context.activity.toolbar
 import com.jeanbarrossilva.stoa.extensions.number.dp
 import com.jeanbarrossilva.stoa.extensions.view.imageview.load
-import com.jeanbarrossilva.stoa.model.Book
 import com.jeanbarrossilva.stoa.presenter.BookDetailsPresenter
 import com.jeanbarrossilva.stoa.presenter.view.BookDetailsView
 import com.jeanbarrossilva.stoa.ui.R
 import com.makeramen.roundedimageview.RoundedImageView
 
-class BookDetailsFragment(override val book: Book): Fragment(R.layout.fragment_book_details), BookDetailsView {
+class BookDetailsFragment: Fragment(R.layout.fragment_book_details), BookDetailsView {
+    private val navArgs by navArgs<BookDetailsFragmentArgs>()
+
     private lateinit var coverView: RoundedImageView
     private lateinit var authorNameView: TextView
     private lateinit var titleView: TextView
@@ -24,6 +26,9 @@ class BookDetailsFragment(override val book: Book): Fragment(R.layout.fragment_b
     private lateinit var buyButton: MaterialButton
 
     override val presenter = BookDetailsPresenter(this)
+    override val book by lazy {
+        navArgs.book
+    }
 
     private fun animateDetailsEntrance() {
         listOf(coverView, authorNameView, titleView, subtitleView, descriptionView).forEachIndexed { index, view ->
