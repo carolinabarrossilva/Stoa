@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.button.MaterialButton
 import com.jeanbarrossilva.stoa.extensions.any.delayedBy
-import com.jeanbarrossilva.stoa.extensions.context.activity.toolbar
 import com.jeanbarrossilva.stoa.extensions.number.dp
+import com.jeanbarrossilva.stoa.extensions.ui.activity.toolbar
 import com.jeanbarrossilva.stoa.extensions.view.imageview.load
 import com.jeanbarrossilva.stoa.presenter.BookDetailsPresenter
 import com.jeanbarrossilva.stoa.presenter.view.BookDetailsView
