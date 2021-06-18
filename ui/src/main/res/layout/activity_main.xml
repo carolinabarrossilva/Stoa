@@ -34,12 +34,10 @@
             app:backgroundTint="?android:textColorPrimary"
             tools:src="@drawable/ic_round_add_24" />
 
-        <androidx.appcompat.widget.Toolbar
+        <com.jeanbarrossilva.stoa.ui.core.view.StoaToolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/card_background"
-            android:elevation="4dp"
-            app:navigationIcon="@drawable/ic_round_menu_24" />
+            tools:title="@string/fragment_home" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

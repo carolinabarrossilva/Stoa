@@ -13,9 +13,9 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.jeanbarrossilva.stoa.extensions.context.activity.fab
-import com.jeanbarrossilva.stoa.extensions.context.activity.toolbar
 import com.jeanbarrossilva.stoa.extensions.context.colorOf
 import com.jeanbarrossilva.stoa.extensions.number.percentOf
+import com.jeanbarrossilva.stoa.extensions.ui.activity.toolbar
 import com.jeanbarrossilva.stoa.model.Book
 import com.jeanbarrossilva.stoa.model.repository.AuthorRepository
 import com.jeanbarrossilva.stoa.presenter.HomePresenter

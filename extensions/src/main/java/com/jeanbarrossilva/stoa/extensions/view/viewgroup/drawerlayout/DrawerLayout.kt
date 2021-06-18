@@ -1,4 +1,4 @@
-package com.jeanbarrossilva.stoa.extensions.view.drawerlayout
+package com.jeanbarrossilva.stoa.extensions.view.viewgroup.drawerlayout
 
 import androidx.drawerlayout.widget.DrawerLayout
 

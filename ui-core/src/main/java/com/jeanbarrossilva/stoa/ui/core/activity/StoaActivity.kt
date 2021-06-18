@@ -7,16 +7,20 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.jeanbarrossilva.stoa.extensions.context.activity.toolbar
 import com.jeanbarrossilva.stoa.extensions.context.activity.view
 import com.jeanbarrossilva.stoa.extensions.context.colorOf
 import com.jeanbarrossilva.stoa.extensions.context.isSystemInDarkTheme
-import com.jeanbarrossilva.stoa.extensions.view.drawerlayout.toggle
 import com.jeanbarrossilva.stoa.extensions.view.searchFor
+import com.jeanbarrossilva.stoa.extensions.view.viewgroup.drawerlayout.toggle
 import com.jeanbarrossilva.stoa.extensions.window.insetsControllerCompat
 import com.jeanbarrossilva.stoa.ui.core.R
+import com.jeanbarrossilva.stoa.ui.core.view.StoaToolbar
 
 open class StoaActivity: AppCompatActivity() {
+    private val toolbar by lazy {
+        view?.searchFor<StoaToolbar>()
+    }
+
     private fun configSystemBarsColor() {
         window.insetsControllerCompat.isAppearanceLightStatusBars = !isSystemInDarkTheme
         window.insetsControllerCompat.isAppearanceLightNavigationBars = !isSystemInDarkTheme
@@ -27,7 +31,7 @@ open class StoaActivity: AppCompatActivity() {
     private fun configNavigation() {
         val drawerLayout = view?.searchFor<DrawerLayout>()
         if (toolbar != null && drawerLayout != null) {
-            setSupportActionBar(toolbar)
+            setSupportActionBar(toolbar!!.androidToolbar)
             setupActionBarWithNavController(findNavController(), drawerLayout)
             findNavController().addOnDestinationChangedListener { controller, destination, _ ->
                 toolbar?.setNavigationOnClickListener {

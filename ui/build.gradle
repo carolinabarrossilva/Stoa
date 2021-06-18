@@ -46,6 +46,7 @@ android {
 
 dependencies {
     implementation project(':extensions')
+    implementation project(':extensions-ui')
     implementation project(':extensions-compose')
     implementation project(':model')
     implementation project(':presenter')
