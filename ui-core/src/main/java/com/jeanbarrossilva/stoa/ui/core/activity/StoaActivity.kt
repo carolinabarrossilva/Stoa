@@ -4,10 +4,10 @@ import android.graphics.drawable.ColorDrawable
 import android.view.MenuItem
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.jeanbarrossilva.stoa.extensions.context.activity.drawerLayout
 import com.jeanbarrossilva.stoa.extensions.context.activity.view
 import com.jeanbarrossilva.stoa.extensions.context.colorOf
 import com.jeanbarrossilva.stoa.extensions.context.isSystemInDarkTheme
@@ -30,14 +30,13 @@ open class StoaActivity: AppCompatActivity() {
     }
 
     private fun configNavigation() {
-        val drawerLayout = view?.searchFor<DrawerLayout>()
         if (toolbar != null && drawerLayout != null) {
             setSupportActionBar(toolbar!!.androidToolbar)
             setupActionBarWithNavController(findNavController(), drawerLayout)
             findNavController().addOnDestinationChangedListener { controller, destination, _ ->
                 toolbar?.performEntrance()
                 toolbar?.setNavigationOnClickListener {
-                    if (destination.id == controller.graph.startDestination) drawerLayout.toggle() else controller.popBackStack()
+                    if (destination.id == controller.graph.startDestination) drawerLayout!!.toggle() else controller.popBackStack()
                 }
             }
         }
@@ -60,6 +59,10 @@ open class StoaActivity: AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return if (item.itemId == android.R.id.home) findNavController().popBackStack() else super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPressed() {
+        if (drawerLayout?.isOpen == true) drawerLayout?.close() else super.onBackPressed()
     }
 
     fun findNavController(): NavController {
