@@ -46,8 +46,8 @@ android {
 
 dependencies {
     implementation project(':extensions')
-    implementation project(':extensions-ui')
-    implementation project(':extensions-compose')
+    implementation project(':extensions-ui-core')
+    implementation project(':extensions-ui-compose')
     implementation project(':model')
     implementation project(':presenter')
     implementation project(':ui-core')
