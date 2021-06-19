@@ -140,8 +140,8 @@ class StoaToolbar: CardView {
     private fun configLayoutParams() {
         this.layoutParams?.apply {
             width = ViewGroup.LayoutParams.MATCH_PARENT
-            height = 60.dp(context)
-            (this as? MarginLayoutParams)?.setMargins(10.dp(context))
+            height = getDefaultHeightWithoutMargin(context)
+            (this as? MarginLayoutParams)?.setMargins(getDefaultMargin(context))
         }
         navigationIconButton.layoutParams = ConstraintLayout.LayoutParams(24.dp(context), 24.dp(context))
     }
@@ -178,5 +178,19 @@ class StoaToolbar: CardView {
 
     fun setTitle(@StringRes titleRes: Int) {
         title = context.getString(titleRes)
+    }
+
+    companion object {
+        private fun getDefaultMargin(context: Context): Int {
+            return 10.dp(context)
+        }
+
+        private fun getDefaultHeightWithoutMargin(context: Context): Int {
+            return 60.dp(context)
+        }
+
+        fun getDefaultHeight(context: Context): Int {
+            return getDefaultMargin(context) + getDefaultHeightWithoutMargin(context)
+        }
     }
 }

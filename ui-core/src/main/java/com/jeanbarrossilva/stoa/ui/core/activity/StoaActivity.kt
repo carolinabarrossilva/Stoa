@@ -2,6 +2,7 @@ package com.jeanbarrossilva.stoa.ui.core.activity
 
 import android.graphics.drawable.ColorDrawable
 import android.view.MenuItem
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -44,10 +45,19 @@ open class StoaActivity: AppCompatActivity() {
         }
     }
 
+    private fun configNavigationFragmentViewMarginForToolbar() {
+        toolbar?.let {
+            (supportFragmentManager.primaryNavigationFragment?.view?.layoutParams as? ViewGroup.MarginLayoutParams)?.apply {
+                topMargin = StoaToolbar.getDefaultHeight(this@StoaActivity)
+            }
+        }
+    }
+
     override fun onStart() {
         super.onStart()
         configSystemBarsColor()
         configNavigation()
+        configNavigationFragmentViewMarginForToolbar()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
