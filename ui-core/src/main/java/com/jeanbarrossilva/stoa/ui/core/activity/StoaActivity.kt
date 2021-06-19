@@ -35,11 +35,9 @@ open class StoaActivity: AppCompatActivity() {
             setSupportActionBar(toolbar!!.androidToolbar)
             setupActionBarWithNavController(findNavController(), drawerLayout)
             findNavController().addOnDestinationChangedListener { controller, destination, _ ->
+                toolbar?.performEntrance()
                 toolbar?.setNavigationOnClickListener {
-                    if (destination.id == controller.graph.startDestination)
-                        drawerLayout.toggle()
-                    else
-                        findNavController().popBackStack()
+                    if (destination.id == controller.graph.startDestination) drawerLayout.toggle() else controller.popBackStack()
                 }
             }
         }

@@ -21,7 +21,6 @@ import androidx.core.view.setMargins
 import com.jeanbarrossilva.stoa.extensions.context.colorOf
 import com.jeanbarrossilva.stoa.extensions.context.withStyledAttributes
 import com.jeanbarrossilva.stoa.extensions.number.dp
-import com.jeanbarrossilva.stoa.extensions.view.viewgroup.cardview.setContentPadding
 import com.jeanbarrossilva.stoa.extensions.view.viewgroup.constraintlayout.constrain
 import com.jeanbarrossilva.stoa.ui.core.R
 
@@ -94,7 +93,7 @@ class StoaToolbar: CardView {
 
     private fun config() {
         radius = 10.dp(context).toFloat()
-        setContentPadding(20.dp(context))
+        setContentPadding(getDefaultPadding(context), 0, getDefaultPadding(context), 0)
     }
 
     private fun initViews(attrs: AttributeSet?, defStyleAttr: Int) {
@@ -143,6 +142,7 @@ class StoaToolbar: CardView {
             height = getDefaultHeightWithoutMargin(context)
             (this as? MarginLayoutParams)?.setMargins(getDefaultMargin(context))
         }
+        layout.layoutParams = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         navigationIconButton.layoutParams = ConstraintLayout.LayoutParams(24.dp(context), 24.dp(context))
     }
 
@@ -157,6 +157,20 @@ class StoaToolbar: CardView {
             connect(id, ConstraintSet.START, navigationIconButton.id, ConstraintSet.END)
             connect(id, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END)
             connect(id, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
+        }
+    }
+
+    internal fun performEntrance() {
+        post {
+            val (titleDefaultY, titleInitialY) = titleView.y to (this.height + titleView.height).toFloat()
+            val (titleDefaultAlpha, titleInitialAlpha) = titleView.alpha to 0f
+
+            titleView.y = titleInitialY
+            titleView.alpha = titleInitialAlpha
+            titleView.animate()
+                .y(titleDefaultY)
+                .alpha(titleDefaultAlpha)
+                .start()
         }
     }
 
@@ -187,6 +201,10 @@ class StoaToolbar: CardView {
 
         private fun getDefaultHeightWithoutMargin(context: Context): Int {
             return 60.dp(context)
+        }
+
+        private fun getDefaultPadding(context: Context): Int {
+            return 15.dp(context)
         }
 
         fun getDefaultHeight(context: Context): Int {
