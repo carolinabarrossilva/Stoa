@@ -5,12 +5,9 @@ import android.content.res.ColorStateList
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
@@ -23,7 +20,14 @@ import com.jeanbarrossilva.stoa.extensions.context.withStyledAttributes
 import com.jeanbarrossilva.stoa.extensions.number.dp
 import com.jeanbarrossilva.stoa.extensions.view.viewgroup.constraintlayout.constrain
 import com.jeanbarrossilva.stoa.ui.core.R
+import com.jeanbarrossilva.stoa.ui.core.activity.StoaActivity
+import com.jeanbarrossilva.stoa.ui.core.view.StoaToolbar.StoaAndroidToolbar
 
+/**
+ * Default toolbar of the app. Contains an equivalent Android [Toolbar] ([androidToolbar]), and changes applied to both are reflected
+ * in both if it is not an exclusive feature of [StoaToolbar] or [Toolbar] (to see what features are interoperable, check what methods
+ * are overridden in [StoaAndroidToolbar]). **Should be used in a [StoaActivity].**
+ **/
 class StoaToolbar: CardView {
     constructor(context: Context): super(context) {
         init()
@@ -38,33 +42,27 @@ class StoaToolbar: CardView {
     }
 
     /**
-     * A [Toolbar] that has its changes reflected in this [StoaToolbar].
+     * A [Toolbar] that has its changes reflected in this [StoaToolbar]. All of this [StoaToolbar]'s changes are applied to it as well.
      */
     inner class StoaAndroidToolbar internal constructor(context: Context) : Toolbar(context) {
         init {
-            title = this@StoaToolbar.title
-            navigationIcon = this@StoaToolbar.navigationIcon
+            navigationIcon = getDefaultNavigationIcon(context)
         }
 
         override fun setTitle(title: CharSequence?) {
             super.setTitle(title)
-            this@StoaToolbar.title = title.toString()
+            this@StoaToolbar.titleView.text = title
         }
 
         override fun setNavigationIcon(icon: Drawable?) {
             super.setNavigationIcon(icon)
-            icon?.let {
-                this@StoaToolbar.navigationIcon = icon
-            }
+            this@StoaToolbar.navigationIconButton.setImageDrawable(icon)
         }
 
         override fun setNavigationOnClickListener(listener: OnClickListener?) {
             super.setNavigationOnClickListener(listener)
-            listener?.let(this@StoaToolbar::setNavigationOnClickListener)
+            this@StoaToolbar.navigationIconButton.setOnClickListener(listener)
         }
-    }
-
-    private var navigationOnClickListener = OnClickListener {
     }
 
     private lateinit var layout: ConstraintLayout
@@ -80,17 +78,6 @@ class StoaToolbar: CardView {
     lateinit var androidToolbar: StoaAndroidToolbar
         private set
 
-    var navigationIcon = ContextCompat.getDrawable(context, R.drawable.ic_round_menu_24)
-        set(icon) {
-            field = icon
-            navigationIconButton.setImageDrawable(icon)
-        }
-    var title = ""
-        set(title) {
-            field = title
-            titleView.text = title
-        }
-
     private fun config() {
         radius = 10.dp(context).toFloat()
         setContentPadding(getDefaultPadding(context), 0, getDefaultPadding(context), 0)
@@ -100,11 +87,8 @@ class StoaToolbar: CardView {
         layout = ConstraintLayout(context, attrs, defStyleAttr)
         navigationIconButton = ImageButton(context, attrs, defStyleAttr).apply {
             imageTintList = ColorStateList.valueOf(context colorOf android.R.attr.textColorSecondary)
-            setImageDrawable(navigationIcon)
-            setOnClickListener(navigationOnClickListener)
         }
         titleView = TextView(context, attrs, defStyleAttr).apply {
-            text = title
             textAlignment = TEXT_ALIGNMENT_CENTER
             textSize = 15f
             setTypeface(typeface, Typeface.BOLD)
@@ -122,10 +106,8 @@ class StoaToolbar: CardView {
     private fun getAttrs(attrs: AttributeSet?, defStyleAttr: Int) {
         context.withStyledAttributes(attrs, defStyleAttr, R.styleable.StoaToolbar) { index ->
             when (index) {
-                R.styleable.StoaToolbar_navigationIcon -> getDrawable(index)?.let {
-                    navigationIcon = it
-                }
-                R.styleable.StoaToolbar_title -> title = getString(index).toString()
+                R.styleable.StoaToolbar_navigationIcon -> androidToolbar.navigationIcon = getDrawable(index)
+                R.styleable.StoaToolbar_title -> androidToolbar.title = getString(index).toString()
             }
         }
     }
@@ -181,19 +163,6 @@ class StoaToolbar: CardView {
         constrain()
     }
 
-    fun setNavigationIcon(@DrawableRes iconRes: Int) {
-        navigationIcon = ContextCompat.getDrawable(context, iconRes)
-    }
-
-    fun setNavigationOnClickListener(listener: OnClickListener) {
-        navigationOnClickListener = listener
-        navigationIconButton.setOnClickListener(listener)
-    }
-
-    fun setTitle(@StringRes titleRes: Int) {
-        title = context.getString(titleRes)
-    }
-
     companion object {
         private fun getDefaultMargin(context: Context): Int {
             return 10.dp(context)
@@ -209,6 +178,10 @@ class StoaToolbar: CardView {
 
         fun getDefaultHeight(context: Context): Int {
             return getDefaultMargin(context) + getDefaultHeightWithoutMargin(context)
+        }
+
+        fun getDefaultNavigationIcon(context: Context): Drawable {
+            return ContextCompat.getDrawable(context, R.drawable.ic_round_menu_24)!!
         }
     }
 }

@@ -69,7 +69,7 @@ class BookDetailsFragment: Fragment(R.layout.fragment_book_details), BookDetails
     }
 
     override fun configToolbar() {
-        activity?.toolbar?.title = book.title
+        activity?.toolbar?.androidToolbar?.title = book.title
     }
 
     override fun onError(error: Throwable) {

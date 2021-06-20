@@ -65,7 +65,7 @@ class HomeFragment: Fragment(), HomeView {
     }
 
     override fun configToolbar() {
-        activity?.toolbar?.setTitle(R.string.fragment_home)
+        activity?.toolbar?.androidToolbar?.setTitle(R.string.fragment_home)
     }
 
     override fun onInitialFabConfig() {
