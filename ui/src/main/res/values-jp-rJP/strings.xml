@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Session_actionButtonTitle">続きを読む</string>
+    <string name="Session_popular_title">人気順</string>
+    <string name="view_book_content_description_cover">本の表紙 %2s, の %1s</string>
+    <string name="PageScaffold_home_title">始め</string>
+    <string name="SearchPageScaffold_field_hint">探索…</string>
+    <string name="fragment_book_details_author">de %s</string>
+    <string name="fragment_book_details_buy">買う</string>
+    <string name="activity_main_content_description_fab_add">追加する</string>
+    <string name="fragment_home">始め</string>
+    <string name="fragment_book_composer">本を追加する</string>
+    <string name="fragment_book_details">Detalhes</string>
+</resources>
+
+<!-- %1s: nome do autor -->
+<!-- %2s: título do livro -->
